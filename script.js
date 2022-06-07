@@ -35,6 +35,23 @@ class Villager {
         return `${target.name} morreu!!`
     }
 
+    fireBallAttack(target) {
+        const manaCost = 25;
+        const damage = 30;
+        if (target.health === 0) {
+            return `${target.name} ja esta morto!!`;
+        }
+        if (this.mana > manaCost){
+            target.health -= damage
+        }
+        if (target.health > 0) {
+            return `${target.name} ficou com ${target.health} de vida`
+        }
+        return `mana insuficiente`
+        // Aqui você irá diminuir a vida do target de acordo com a variavel "damage" e retornar ela
+        // Devera tambem fazer a verificacao se o Mage tem mana suficiente para lancar o ataque.
+        // Diferente do normalAttack a magia nao tem seu dano reduzido pela defesa do adversario
+    }
 }
 
 class Knight extends Villager {
@@ -46,3 +63,10 @@ class Knight extends Villager {
     }
 }
 
+class Mage extends Villager {
+    constructor(name) {
+        super(name)
+        this.attack = 10
+        this.mana = 100
+    }
+}
